@@ -2,20 +2,15 @@
 
 let clientUrl = process.env.CLIENT_URL;
 let apiUrl = process.env.API_URL;
-if(process.env.MODE == "dev") {
-  clientUrl = "http://localhost";
-  apiUrl = "http://localhost";
-  clientUrl = `${clientUrl}:${process.env.CLIENT_PORT}`;
-  apiUrl = `${apiUrl}:${process.env.API_PORT}`;
-}
+console.log(clientUrl);
 
 module.exports = {
 	reactStrictMode: true,
 	output: "standalone",
 	publicRuntimeConfig: {
 		mode: process.env.MODE,
-    clientUrl,
-    apiUrl
+        clientUrl,
+        apiUrl
 	},
 	images: {
     remotePatterns: [
@@ -32,7 +27,7 @@ module.exports = {
   rewrites: async () => {
     return [
       {
-        source: "/api/:path*",
+        source: `${clientUrl}/api/:path*`,
         destination: `${apiUrl}/:path*`,
       }
     ]

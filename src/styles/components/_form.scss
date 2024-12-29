@@ -1,0 +1,70 @@
+.form-container {
+    padding: 0rem;
+  }
+  
+  .form-input-container {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0;
+    &:focus {
+      box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.5);
+    }
+  }
+  .form-label {
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding-bottom: 0.5rem;
+    margin-left: 0.75rem;
+    padding-top: 0.5rem;
+  }
+
+  .form-input {
+    background-color: inherit;
+    color: theme-color("white");
+    margin-left: 0.75rem;
+    width: 90%;
+  }
+
+  input {
+    border: none;
+    overflow: hidden;  //Text doesn't go past the border
+    white-space: nowrap; //Single Line
+    caret-color: theme-color("white");
+    &:focus {
+      outline: none;
+    }
+    &:autofill, &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active {
+      -webkit-box-shadow: inset 0 0 0 50px theme-color("darker-bg");
+      -webkit-text-fill-color: theme-color("white");
+    }
+    &:-internal-autofill-selected {
+      background-color: theme-color("darker-bg") !important;
+      color: theme-color("white") !important;
+    }
+
+    &[type = "file"] {
+      display: none;
+    }
+  
+    &[type = "password"]::-ms-reveal, &[type = "password"]::-ms-clear {
+      display: none;
+    }
+  }
+
+  textarea {
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
+  
+  .profile-image-section {
+    align-items: center;
+  }
+  
+  .feedback {
+    margin-left: 0.75rem;
+    margin-top: 0.5rem; 
+    font-size: 0.75rem; 
+    color: red;
+  }

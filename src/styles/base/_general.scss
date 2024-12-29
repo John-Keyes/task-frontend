@@ -1,0 +1,122 @@
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+$fa-font: 'Font Awesome 5 Free';
+
+$device-mins: (
+    "sm": 600px,
+    "md": 768px,
+    "lg": 992px,
+    "xl": 1200px
+);
+
+$device-maxes: (
+    "xs": 600px,
+    "sm": 768px,
+    "md": 992px,
+    "lg": 1200px
+);
+
+@function device-min($sizeKey) {
+    @return map-get($device-mins, $sizeKey);
+}
+
+@function device-max($sizeKey) {
+    @return map-get($device-maxes, $sizeKey);
+}
+
+.flex {
+    display: flex;
+    &-row {
+        flex-direction: row;
+        @each $key, $value in $device-mins {
+            &-#{$key} {
+                @media screen and (min-width: $value) {
+                    flex-direction: row;
+                }
+            }
+        }
+    }
+    &-column {
+        flex-direction: column;
+        @each $key, $value in $device-mins {
+            &-#{$key} {
+                @media screen and (min-width: $value) {
+                    flex-direction: column;
+                }
+            }
+        }
+    }
+    &-center {
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.block {
+    display: block;
+}
+
+$colors: (
+    "red": #FF3B30,
+    "orange": #FF9500,
+    "yellow": #FFCC00,
+    "green": #34C759
+    "blue": #007AFF,
+    "indigo": #5856D6,
+    "purple": #AF52DE,
+    "pink": #FF2D55,
+    "brown": #A2845E,
+    "button": "#1E6F9F"
+    "white": #F2F2F2,
+    "gray": #999,
+    "bg": #444,
+    "dark-bg": #333,
+    "darker-bg": #0D0D0D
+);
+
+@function theme-color($color) {
+    @return map-get($colors, $color);
+}
+
+.text {
+    @each $key, $value in $colors {
+        &-#{$key} {
+            color: $value;
+            &-transparent {
+                color: rgba($value, 0);
+            }
+        }
+        &-hover-#{$key} {
+            &:hover {
+                color: $value;
+                &-transparent {
+                    color: rgba($value, 0);
+                }
+            }
+        }
+    }
+}
+
+.bg {
+    @each $key, $value in $colors {
+        &-#{$key} {
+            background-color: $value;
+            &-transparent {
+                background-color: rgba($value, 0);
+            }
+        }
+        &-hover-#{$key} {
+            &:hover {
+                background-color: $value;
+                &-transparent {
+                    background-color: rgba($value, 0);
+                }
+            }
+        }
+    }
+}
+
+.fs {
+    &-inherit {
+        font-size: inherit;
+    }
+}

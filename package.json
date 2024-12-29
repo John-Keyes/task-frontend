@@ -1,65 +1,69 @@
 {
-    "name": "sfs1",
+    "name": "nooro",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-      "@fortawesome/fontawesome-free": "^6.4.0",
-      "@reduxjs/toolkit": "^1.9.5",
-      "@testing-library/react": "^14.0.0",
-      "@testing-library/user-event": "^14.4.3",
-      "@types/jest": "^29.5.2",
-      "@types/node": "^20.2.3",
-      "@types/react": "^18.2.7",
-      "@types/react-dom": "^18.2.4",
-      "concurrently": "^8.2.2",
-      "dotenv": "^16.0.3",
-      "fork-ts-checker-webpack-plugin": "^6.5.3",
-      "next": "^13.4.5",
-      "next-redux-wrapper": "^8.1.0",
-      "next-seo": "^6.0.0",
-      "react": "^18.2.0",
-      "react-dev-utils": "^12.0.1",
-      "react-dom": "^18.2.0",
-      "react-redux": "^8.0.5",
-      "redux": "^4.2.1",
-      "sharp": "^0.32.1",
-      "web-vitals": "^3.3.1"
+        "@fortawesome/fontawesome-free": "^6.4.0",
+        "@reduxjs/toolkit": "^1.9.5",
+        "@testing-library/react": "^14.0.0",
+        "@testing-library/user-event": "^14.4.3",
+        "@types/jest": "^29.5.2",
+        "@types/node": "^20.2.3",
+        "@types/react": "^18.2.7",
+        "@types/react-dom": "^18.2.4",
+        "concurrently": "^8.2.2",
+        "dotenv": "^16.0.3",
+        "flatlist-react": "^1.5.14",
+        "fork-ts-checker-webpack-plugin": "^6.5.3",
+        "next": "^13.4.5",
+        "next-redux-wrapper": "^8.1.0",
+        "next-seo": "^6.0.0",
+        "react": "^18.2.0",
+        "react-dev-utils": "^12.0.1",
+        "react-dom": "^18.2.0",
+        "react-redux": "^8.0.5",
+        "redux": "^4.2.1",
+        "sharp": "^0.32.1",
+        "web-vitals": "^3.3.1"
     },
     "scripts": {
-      "test": "cypress open -p 3040",
-      "dev": "next dev -p 3040",
-      "build": "next build",
-      "start": "next start -p 3040"
+        "test": "cypress open -p 3040",
+        "dev": "next dev -p 3040",
+        "build": "next build",
+        "start": "next start -p 3040"
     },
     "eslintConfig": {
-      "extends": [
-        "react-app",
-        "react-app/jest"
-      ]
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
     },
     "browserslist": {
-      "production": [
-        ">0.2%",
-        "not dead",
-        "not op_mini all"
-      ],
-      "development": [
-        "last 1 chrome version",
-        "last 1 firefox version",
-        "last 1 safari version"
-      ]
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
     },
     "devDependencies": {
-      "@babel/core": "^7.21.8",
-      "@babel/plugin-proposal-class-properties": "^7.18.6",
-      "@babel/preset-env": "^7.21.5",
-      "@babel/preset-react": "^7.18.6",
-      "@babel/preset-typescript": "^7.21.5",
-      "babel-loader": "^9.1.2",
-      "path": "^0.12.7",
-      "sass": "^1.62.1",
-      "sass-loader": "^13.3.0",
-      "typescript": "^4.9.5"
+        "@babel/core": "^7.21.8",
+        "@babel/plugin-proposal-class-properties": "^7.18.6",
+        "@babel/preset-env": "^7.21.5",
+        "@babel/preset-react": "^7.18.6",
+        "@babel/preset-typescript": "^7.21.5",
+        "autoprefixer": "^10.4.20",
+        "babel-loader": "^9.1.2",
+        "path": "^0.12.7",
+        "postcss": "^8.4.49",
+        "sass": "^1.62.1",
+        "sass-loader": "^13.3.0",
+        "tailwindcss": "^3.4.17",
+        "typescript": "^4.9.5",
+        "webpack": "^5.97.1"
     }
-  }
-  
+}
