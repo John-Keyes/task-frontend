@@ -1,6 +1,7 @@
+import { useRouter } from 'next/router';
 import {BaseSyntheticEvent, ComponentProps, useState} from 'react';
 import {Task} from 'src/lib/models/tasks';
-import { useUpdateTaskMutation } from 'src/store/tasks/apiSlice';
+import { useDeleteTaskMutation, useUpdateTaskMutation } from 'src/store/tasks/apiSlice';
 
 interface TaskCardProps extends ComponentProps<"li"> {
     className?: string;
@@ -9,14 +10,18 @@ interface TaskCardProps extends ComponentProps<"li"> {
 
 const TaskCard = ({task, className, ...props}: TaskCardProps) => {
     const [UpdateTask] = useUpdateTaskMutation();
+    const [DeleteTask] = useDeleteTaskMutation();
+    const {reload} = useRouter();
     const [focused, setFocused] = useState<boolean>(false);
     const HandleOnFocus = (e: BaseSyntheticEvent) => {
         setFocused(true);
     }
     const HandleOnBlur = (e: BaseSyntheticEvent) => {
         const timeout = setTimeout(() => {
-            setFocused(false);
-        }, 3000)
+            console.log("T");
+        }, 3000);
+        setFocused(false);
+        return () => clearTimeout(timeout)
     }
     const HandleOnChange = async (e: BaseSyntheticEvent) => {
         if(!focused) {
@@ -29,11 +34,24 @@ const TaskCard = ({task, className, ...props}: TaskCardProps) => {
             }
         }
     }
+
+    const HandleDelete = async (e: BaseSyntheticEvent) => {
+        if(!focused) {
+            try {
+                await DeleteTask({id: task.id});
+            } catch(e) {
+                console.log(e);
+            }
+            finally {
+                reload();
+            }
+        }
+    }
     return (
     <li {...props} className={`fit-width task-card space-above ${className}`}>
         <input id={`task-card-${task.id}`} onFocus={HandleOnFocus} onChange={HandleOnChange} type="checkbox" onBlur={HandleOnBlur} value="" checked={task.completed} name={task.title as string} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
         <label htmlFor={`task-card-${task.id}`} className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{task.title}</label>
-        <span className="fa-solid fa-trash"/>
+        <span className="fa-solid fa-trash" onClick={HandleDelete} />
     </li>
     );
 }
