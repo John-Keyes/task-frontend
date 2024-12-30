@@ -4,4 +4,17 @@ type Task = {
     color: string,
     completed: boolean
 }
-export default Task;
+
+type NewTask = {
+    title: string, 
+    color: string, 
+    completed: boolean
+}
+
+type TaskList = {
+    tasks: Task[],
+    taskCount: number,
+    completedCount: number
+}
+
+export type {NewTask, Task, TaskList};

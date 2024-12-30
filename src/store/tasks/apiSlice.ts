@@ -1,20 +1,26 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import getConfig from 'next/config';
-import Task from 'src/lib/models/tasks';
+import {NewTask, Task} from 'src/lib/models/tasks';
 
 const {publicRuntimeConfig: {apiUrl}} = getConfig();
 
+//type BuilderType = EndpointBuilder<BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, "tasks", "api">;
+
 export const tasksApiSlice = createApi({
-    baseQuery: fetchBaseQuery({baseUrl: apiUrl}),
     reducerPath: "api",
+    baseQuery: fetchBaseQuery({baseUrl: apiUrl}),
     tagTypes: ["tasks"],
-    endPoints: (builder: any) => ({
+    endpoints: (builder) => ({
         GetTasks: builder.query({
             query: () => "/tasks",
             providesTags: ["tasks"]
         }),
+        GetOneTask :builder.query({
+            query: ({id}) => `/tasks/${id}`,
+            providesTags: ["tasks"]
+        }),
         CreateTask: builder.mutation({
-            query: (task: Task) => ({
+            query: (task: NewTask) => ({
                 url: "/tasks",
                 method: "POST",
                 body: task
@@ -40,6 +46,7 @@ export const tasksApiSlice = createApi({
 
 export const {
     useGetTasksQuery,
+    useGetOneTaskQuery,
     useCreateTaskMutation,
     useUpdateTaskMutation,
     useDeleteTaskMutation

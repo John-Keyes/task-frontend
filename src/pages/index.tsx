@@ -1,34 +1,37 @@
 import React from 'react';
 import {useRouter} from 'next/router';
 import { NextPage } from 'next';
-import { useGetTasksQuery, useCreateTaskMutation } from 'src/store/tasks/apiSlice';
+import { useGetTasksQuery } from 'src/store/tasks/apiSlice';
 import Spinner from '../components/spinner';
-import Button from 'src/components/button';
+import Button from '../components/button';
 import FlatList from 'flatlist-react/lib';
+import TaskCard from '../components/tasks/taskCard';
+import TasksEmpty from '../components/tasks/tasksEmpty';
+import TaskHeader from '../components/tasks/taskHeader';
 
 const TasksHome: NextPage = () => {
     const {push} = useRouter();
-    const {data: tasks, isLoading, isSuccess, isError, error} = useGetTasksQuery();
+    const {data, isLoading, isSuccess, isError, error} = useGetTasksQuery({});
     let content;
     if(isLoading) {
         content = <Spinner/>;
     }
-    else if(isSuccess) {
-        content = tasks;
+   /* else if(isSuccess) {
+        content = data.tasks;
     }
     else if(isError) {
         content = <p>{error}</p>
-    }
+    }*/
     return (
         <div id="home">
-            <div id="welcome-section" className="flex flex-center content-container">
+            <div id="welcome-section" className="flex flex-center flex-column content-container">
                 <Button onClick={() => push("/")}>Create Task</Button>
+                <TaskHeader taskCount={data.taskCount} completedCount={data.completedCount}/>
                 <ul>
                     <FlatList
-                    list={tasks}
-                    renderItem={Task}
-                    renderWhenEmpty={() => <div>List is empty!</div>}
-                    groupBy={person => person.info.age > 18 ? 'Over 18' : 'Under 18'}
+                        list={data.tasks}
+                        renderItem={TaskCard}
+                        renderWhenEmpty={() => <TasksEmpty/>}
                     />
                 </ul>
             </div>

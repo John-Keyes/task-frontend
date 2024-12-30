@@ -1,6 +1,6 @@
 import React from 'react';
 import {AppProps} from 'next/app';
-import DefaultSEO from '../components/seo/defaultSEO.tsx';
+import DefaultSEO from '../components/seo/defaultSEO';
 import PageSEO from '../components/seo/pageSEO';
 import Header from '../components/nav/header';
 import {compose} from 'redux';

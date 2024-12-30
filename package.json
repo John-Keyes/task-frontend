@@ -14,6 +14,8 @@
         "concurrently": "^8.2.2",
         "dotenv": "^16.0.3",
         "flatlist-react": "^1.5.14",
+        "flowbite": "^2.5.2",
+        "flowbite-react": "^0.10.2",
         "fork-ts-checker-webpack-plugin": "^6.5.3",
         "next": "^13.4.5",
         "next-redux-wrapper": "^8.1.0",
@@ -27,7 +29,6 @@
         "web-vitals": "^3.3.1"
     },
     "scripts": {
-        "test": "cypress open -p 3040",
         "dev": "next dev -p 3040",
         "build": "next build",
         "start": "next start -p 3040"
@@ -64,6 +65,8 @@
         "sass-loader": "^13.3.0",
         "tailwindcss": "^3.4.17",
         "typescript": "^4.9.5",
-        "webpack": "^5.97.1"
+        "webpack": "^5.84.0",
+        "webpack-cli": "^5.1.1",
+        "webpack-dev-server": "^4.15.0"
     }
 }

@@ -2,15 +2,14 @@
 
 let clientUrl = process.env.CLIENT_URL;
 let apiUrl = process.env.API_URL;
-console.log(clientUrl);
 
 module.exports = {
 	reactStrictMode: true,
 	output: "standalone",
 	publicRuntimeConfig: {
 		mode: process.env.MODE,
-        clientUrl,
-        apiUrl
+    clientUrl,
+    apiUrl
 	},
 	images: {
     remotePatterns: [
@@ -27,7 +26,7 @@ module.exports = {
   rewrites: async () => {
     return [
       {
-        source: `${clientUrl}/api/:path*`,
+        source: `/api/:path*`,
         destination: `${apiUrl}/:path*`,
       }
     ]
