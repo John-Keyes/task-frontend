@@ -31,7 +31,7 @@ const TasksDetail = () => {
         }
     }
     return (
-        <div>
+        <div className="flex page-padding flex-center flex-column content-container">
            <Link href="/" className="arrow-link">
                 <span className="fa-solid fa-chevron-left"/>
             </Link>
