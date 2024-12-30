@@ -78,3 +78,11 @@ body {
   .cursor-pointer::before {
     cursor: pointer;
   }
+
+  .task-text {
+    font-size: 14px;
+  }
+
+  .button-card-radius {
+    border-radius: 8px;
+  }

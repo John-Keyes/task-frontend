@@ -8,13 +8,14 @@ import { Task } from '../lib/models/tasks';
 import Link from 'next/link';
 
 const New: NextPage = () => {
-    const {back} = useRouter();
+    const {back, push} = useRouter();
     const [CreateTask] = useCreateTaskMutation();
 
-    const HandleSubmit = (e: BaseSyntheticEvent) => {
+    const HandleSubmit = async (e: BaseSyntheticEvent) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        CreateTask({title: formData.get("title") as string, color: formData.get("color") as string, completed: false});
+        await CreateTask({title: formData.get("title") as string, color: formData.get("color") as string, completed: false});
+        push("/");
     }
     
     return (
@@ -22,7 +23,7 @@ const New: NextPage = () => {
             <Link href="/" target="_blank" rel="noopener noreferrer">
                 <span className="fa-solid fa-chevron-left"/>
             </Link>
-            <TasksForm SubmitHandler={CreateTask}>
+            <TasksForm SubmitHandler={HandleSubmit}>
                 <span className="button-text flex text-white">
                     <p>Add Task</p>
                     <span className="fa-solid fa-plus"/>

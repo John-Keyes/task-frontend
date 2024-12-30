@@ -9,7 +9,7 @@ import { APIClient } from '../../lib/helpers/Api';
 
 const TasksDetail = () => {
     const [newTask, setNewTask] = useState<Task>();
-    const { query: { id }, back } = useRouter()
+    const { query: { id }, back, reload } = useRouter()
     const { data } = useGetOneTaskQuery({id});
     const [UpdateTask, isError] = useUpdateTaskMutation();
     useEffect(() => {
@@ -18,17 +18,18 @@ const TasksDetail = () => {
 		}
 	}, [isError, back]);
 
-    const HandleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+    const HandleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        UpdateTask({id: data.id, title: formData.get("title") as string, color: formData.get("color") as string, completed: false});
+        await UpdateTask({id: data.id, title: formData.get("title") as string, color: formData.get("color") as string, completed: false});
+        reload();
     }
     return (
         <div>
             <Link href="/" target="_blank" rel="noopener noreferrer">
                 <span className="fa-solid fa-chevron-left"/>
             </Link>
-            <TasksForm SubmitHandler={UpdateTask} taskColor={data.color}>
+            <TasksForm SubmitHandler={HandleSubmit} taskColor={data.color}>
                 <span className="button-text flex text-white">
                     <p>Save</p>
                     <span className="fa-solid fa-check"/>

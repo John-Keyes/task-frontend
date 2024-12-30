@@ -16,16 +16,21 @@ const TasksHome: NextPage = () => {
     if(isLoading) {
         content = <Spinner/>;
     }
-   /* else if(isSuccess) {
+    else if(isSuccess) {
         content = data.tasks;
     }
     else if(isError) {
         content = <p>{error}</p>
-    }*/
+    }
     return (
         <div id="home">
             <div id="welcome-section" className="flex flex-center flex-column content-container">
-                <Button onClick={() => push("/")}>Create Task</Button>
+                <Button onClick={() => push("/new")}>
+                    <span className="button-text flex text-white">
+                        <p>Create Task</p>
+                        <span className="fa-solid fa-plus"/>
+                    </span> 
+                </Button>
                 <TaskHeader taskCount={data.taskCount} completedCount={data.completedCount}/>
                 <ul>
                     <FlatList
