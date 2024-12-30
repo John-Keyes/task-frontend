@@ -4,16 +4,16 @@ const { publicRuntimeConfig: apiUrl } = getConfig()
 
 export class APIClient {
 
-	async get(route: string, headers: HeadersInit) {
-		const rawResponse = await fetch(`${apiUrl + route}`, {
+	async Get(route: string, headers: HeadersInit) {
+		const response = await fetch(`${apiUrl + route}`, {
 			credentials: 'include',
 			headers,
 		})
 
-		return await rawResponse.json()
+		return await response.json()
 	}
 
-	async post(route: string, body: Object, headers: HeadersInit) {
+	async Post(route: string, body: Object, headers: HeadersInit) {
 		const response = await fetch(`${apiUrl + route}`, {
 			method: 'POST',
 			body: JSON.stringify(body),

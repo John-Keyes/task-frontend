@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: theme-color("bg");
+    background-color: theme-color("dark-bg");
     color: #fff;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -18,10 +18,12 @@ body {
     width: 736px;
     margin: 0;
     overflow-x: hidden;
-    /*@media screen and (max-width: device-max("md")) {
+    justify-self:center;
+    @media screen and (max-width: device-max("md")) {
       padding-left: 0.5rem;
       padding-right: 0.5rem;
-    }*/
+      width: 100%;
+    }
   }
 
   .title {
@@ -57,8 +59,9 @@ body {
   }
 
   code {
-    font-family: American Typewriter, serif
+    font-family: Inter;
   }
+
   
   a, .a {
     text-decoration: none;  
@@ -86,3 +89,12 @@ body {
   .button-card-radius {
     border-radius: 8px;
   }
+
+  .page-padding {
+    padding-top: 250px;
+}
+
+.arrow-link {
+  text-align: start;
+  width: 100%;
+}

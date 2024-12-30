@@ -1,36 +1,31 @@
-.form-container {
-    padding: 0rem;
-  }
-  
+
   .form-input-container {
-    margin-top: 1.25rem;
-    margin-bottom: 1.25rem;
-    padding-bottom: 0;
-    &:focus {
-      box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.5);
-    }
-  }
-  .form-label {
-    font-weight: bold;
-    font-size: 0.8rem;
-    padding-bottom: 0.5rem;
-    margin-left: 0.75rem;
-    padding-top: 0.5rem;
+    width:100%;
+    text-align: start;
+    align-items: flex-start;
   }
 
-  .form-input {
-    background-color: inherit;
-    color: theme-color("white");
-    margin-left: 0.75rem;
-    width: 90%;
+  label {
+    font-weight: 700;
+    font-size: 14px;
   }
+
 
   input {
-    border: none;
+    border: 1px solid theme-color("icon");
+    border-radius: 8px;
     overflow: hidden;  //Text doesn't go past the border
     white-space: nowrap; //Single Line
     caret-color: theme-color("white");
+    background-color: theme-color("bg");
+    width: 97%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    padding-bottom: 0.5rem;
     &:focus {
+      color: theme-color("white");
+      border-color: theme-color("white");
       outline: none;
     }
     &:autofill, &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active {
@@ -49,17 +44,6 @@
     &[type = "password"]::-ms-reveal, &[type = "password"]::-ms-clear {
       display: none;
     }
-  }
-
-  textarea {
-    border: none;
-    &:focus {
-      outline: none;
-    }
-  }
-  
-  .profile-image-section {
-    align-items: center;
   }
   
   .feedback {

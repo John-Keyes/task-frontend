@@ -1,51 +1,16 @@
-.route {
-    text-decoration: none; 
-    font-weight: bold;
-    font-size: 1.25rem;
-}
-
-.route-container {
-    margin-top: 25px;
-    &-not-signin {
-        margin-top: 30px;
-        width: 250px;
-        justify-content: space-between;
-        @media screen and (max-width: device-max("md")) {
-            display: none;
-        }
-    }
-}
-
-//margin-left: 0.5rem
-.header-signin-link {
-    margin-right: 0.5em;
-}
-
-.header-signup-button {
-    font-size: 1.25rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    border-radius: 2rem;
-}
-#header-logo-container {
- margin-left: -18px;
-}
 .logo {
-    height: 80px;
-    width: 240px;
+    height: 48px;
+    width: 226px;
 }
 #top-nav-root {
     position: fixed;
     z-index: 5;
-    top: 0;
-    height: 80px;
+    height: 200px;
 }
 
 #top-nav {
-    justify-content: space-between;
-    //position: relative;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
 }
 

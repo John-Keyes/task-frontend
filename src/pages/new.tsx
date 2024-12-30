@@ -10,23 +10,30 @@ import Link from 'next/link';
 const New: NextPage = () => {
     const {back, push} = useRouter();
     const [CreateTask] = useCreateTaskMutation();
+    const [error, setError] = useState<string | null>(null);
 
     const HandleSubmit = async (e: BaseSyntheticEvent) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        await CreateTask({title: formData.get("title") as string, color: formData.get("color") as string, completed: false});
-        push("/");
+        try {
+            await CreateTask({title: formData.get("title") as string, color: formData.get("color") as string, completed: false});
+        }
+        catch(e: any) {
+            setError(e?.message as string || "Unexpected Error Occurred");
+        } finally {
+            push("/");
+        }
     }
     
     return (
-        <div className="flex flex-column">
-            <Link href="/" target="_blank" rel="noopener noreferrer">
+        <div className="flex page-padding flex-center flex-column content-container">
+            <Link href="/" className="arrow-link">
                 <span className="fa-solid fa-chevron-left"/>
             </Link>
-            <TasksForm SubmitHandler={HandleSubmit}>
-                <span className="button-text flex text-white">
+            <TasksForm SubmitHandler={HandleSubmit} error={error}>
+                <span className="button-text flex flex-center text-white">
                     <p>Add Task</p>
-                    <span className="fa-solid fa-plus"/>
+                    <span className="fa-solid space-infront fa-plus"/>
                 </span>
             </TasksForm>
         </div>

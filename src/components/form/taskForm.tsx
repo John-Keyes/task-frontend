@@ -5,27 +5,31 @@ import Spinner from '../spinner';
 import TextInput from './textInput';
 import Button from '../button';
 import Ellipse from '../ellipse';
+import Label from './label';
 
 
 type TasksFormType = {
     children: ReactNode, 
     taskColor?: string, 
-    SubmitHandler: any
+    SubmitHandler: any,
+    error: string | null
 }
-const TasksForm = ({children, taskColor, SubmitHandler} : TasksFormType) => {
+const TasksForm = ({children, taskColor, SubmitHandler, error} : TasksFormType) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [color, setColor] = useState<string>(taskColor || "red");
     return (
-            <form className="form-container" onSubmit={SubmitHandler}>
+            <form onSubmit={SubmitHandler} className="fit-width space-above">
                 <TextInput
-                    name="title"
-                    type="title"
+                    name="Title"
                     id="task-form-title"
                     placeholder="Ex: Brush Your Teeth"
                     minLength={4}
                     maxLength={50}
                 />
-                <div className="flex">
+                <div className="fit-width space-above">
+                    <Label htmlForName="Color"/>
+                </div>
+                <div className="flex space-above">
                     <Ellipse color="red" setColor={setColor}/>
                     <Ellipse color="orange" setColor={setColor}/>
                     <Ellipse color="yellow" setColor={setColor}/>
@@ -37,14 +41,13 @@ const TasksForm = ({children, taskColor, SubmitHandler} : TasksFormType) => {
                     <Ellipse color="brown" setColor={setColor}/>
                     <input value={color} style={{display: "none"}} />
                 </div>
-                <div className="flex sign-button-container fit-width">
+                <div className="flex sign-button-container fit-width space-above">
                     <Button id="task-form-submit" className="fit-width" type="submit" disabled={isLoading/* || (!IsClear())*/}>
                         {children}
                     </Button>
                 </div>
                 <span className="feedback">
-                    {/*<Toast serverErrors={serverErrors}/>*/}
-                    {"Fix Errors before submitting"}
+                    {error && <p>{error}</p>}
                 </span>
             </form>
     );
