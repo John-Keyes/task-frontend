@@ -18,11 +18,11 @@
     white-space: nowrap; //Single Line
     caret-color: theme-color("white");
     background-color: theme-color("bg");
-    width: 97%;
+    width: 100%;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     padding-left: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-right: 0.5rem;
     &:focus {
       color: theme-color("white");
       border-color: theme-color("white");
