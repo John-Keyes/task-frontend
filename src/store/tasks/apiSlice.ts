@@ -7,7 +7,7 @@ const {publicRuntimeConfig: {apiUrl}} = getConfig();
 //type BuilderType = EndpointBuilder<BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, "tasks", "api">;
 
 export const tasksApiSlice = createApi({
-    reducerPath: "api",
+    reducerPath: "/",
     baseQuery: fetchBaseQuery({baseUrl: apiUrl}),
     tagTypes: ["tasks"],
     endpoints: (builder) => ({

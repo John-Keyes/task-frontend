@@ -35,7 +35,7 @@ const TasksDetail = () => {
            <Link href="/" className="arrow-link">
                 <span className="fa-solid fa-chevron-left"/>
             </Link>
-            <TasksForm SubmitHandler={HandleSubmit} taskColor={data.color} error={error}>
+            <TasksForm SubmitHandler={HandleSubmit} taskColor={data.color} taskTitle={data.title} error={error}>
                 <span className="button-text flex flex-center text-white">
                     <p>Save</p>
                     <span className="fa-solid space-infront fa-check fa-sharp"/>
