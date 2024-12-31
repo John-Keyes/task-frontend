@@ -12,7 +12,7 @@ import { emptyTasks } from 'src/lib/models/tasks';
 
 const Home: NextPage = () => {
     const {push} = useRouter();
-    const {data, isLoading, isSuccess, isError, error} = useGetTasksQuery({});
+    const {data, isLoading, isSuccess, isError, error} = useGetTasksQuery();
     let content;
     if(isLoading) {
         content = <Spinner/>;
