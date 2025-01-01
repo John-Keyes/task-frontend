@@ -14,7 +14,7 @@
 
 .task-header-num {
     margin-left: 0.5rem;
-    background-color: theme-color("dark-gray");
+    background-color: theme-color("card");
     justify-content: center;
     border-radius: 20%;
     height: 19px;
@@ -22,7 +22,7 @@
     padding-left: 0.25rem;
     padding-right: 0.25rem;
     padding-bottom:0.15rem;
-    font-size:12px;
+    font-size: 12px;
     font-weight: 700;
     margin-block-start: 0px;
     margin-block-end: 0px;
@@ -32,4 +32,9 @@
     border-top: 1px solid theme-color("icon");
     border-radius: 8px;
     padding-top: 3rem;
+}
+
+.task-empty-h4 {
+    color: theme-color("icon");
+    margin-top: 35px;
 }

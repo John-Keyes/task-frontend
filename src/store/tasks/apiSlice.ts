@@ -1,25 +1,26 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import getConfig from 'next/config';
-import {NewTask, Task} from 'src/lib/models/tasks';
+import {NewTask, Task, TaskList} from 'src/lib/models/tasks';
 
 const {publicRuntimeConfig: {apiUrl}} = getConfig();
 
 //type BuilderType = EndpointBuilder<BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, "tasks", "api">;
 
+//<return type arg>
 export const tasksApiSlice = createApi({
     reducerPath: "/tasks",
     baseQuery: fetchBaseQuery({baseUrl: apiUrl}),
     tagTypes: ["tasks"],
     endpoints: (builder) => ({
-        GetTasks: builder.query({
+        GetTasks: builder.query<TaskList, void>({
             query: () => "/",
             providesTags: ["tasks"]
         }),
-        GetOneTask :builder.query({
-            query: ({id}) => `/${id}`,
+        GetOneTask :builder.query<Task, number>({
+            query: (id: number) => `/${id}`,
             providesTags: ["tasks"]
         }),
-        CreateTask: builder.mutation({
+        CreateTask: builder.mutation<Task, NewTask>({
             query: (task: NewTask) => ({
                 url: "/",
                 method: "POST",
@@ -27,7 +28,7 @@ export const tasksApiSlice = createApi({
             }),
             invalidatesTags: ["tasks"]
         }),
-        UpdateTask: builder.mutation({
+        UpdateTask: builder.mutation<Task, Task>({
             query: (task: Task) => ({
                 url: `/${task.id}`,
                 method: "PUT",
@@ -35,8 +36,8 @@ export const tasksApiSlice = createApi({
             }),
             invalidatesTags: ["tasks"]
         }),
-        DeleteTask: builder.mutation({
-            query: ({id}: {id: number}) => ({
+        DeleteTask: builder.mutation<void, number>({
+            query: (id: number) => ({
                 url: `/${id}`,
                 method: "DELETE"
             })

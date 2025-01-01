@@ -5,5 +5,9 @@
         height: 100%;
         z-index: -1;
     }
-    background-color: theme-color("dark-bg");
+    background-color: theme-color("bg");
+    @media screen and (max-width: device-max("md")) {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
 }

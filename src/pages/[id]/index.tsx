@@ -9,7 +9,7 @@ import { APIClient } from '../../lib/helpers/Api';
 
 const TasksDetail = () => {
     const { query: { id }, back, reload } = useRouter()
-    const { data } = useGetOneTaskQuery({id});
+    const { data } = useGetOneTaskQuery(Number(id));
     const [UpdateTask, isError] = useUpdateTaskMutation();
     const [error, setError] = useState<string | null>(null);
     useEffect(() => {
@@ -22,7 +22,7 @@ const TasksDetail = () => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         try {
-            await UpdateTask({id: data.id, title: formData.get("title") as string, color: formData.get("color") as string, completed: false});
+            await UpdateTask({id: data?.id as number, title: formData.get("title") as string, color: formData.get("color") as string, completed: false as boolean} as Task);
         }
         catch(e: any) {
             setError(e?.message as string || "Unexpected Error Occurred");
@@ -35,7 +35,7 @@ const TasksDetail = () => {
            <Link href="/" className="arrow-link">
                 <span className="fa-solid fa-chevron-left"/>
             </Link>
-            <TasksForm SubmitHandler={HandleSubmit} taskColor={data.color} taskTitle={data.title} error={error}>
+            <TasksForm SubmitHandler={HandleSubmit} taskColor={data?.color} taskTitle={data?.title} error={error}>
                 <span className="button-text flex flex-center text-white">
                     <p>Save</p>
                     <span className="fa-solid space-infront fa-check fa-sharp"/>

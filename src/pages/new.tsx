@@ -1,10 +1,9 @@
-import React, { BaseSyntheticEvent, SyntheticEvent, useState } from 'react';
+import React, { BaseSyntheticEvent, useState } from 'react';
 import {useRouter} from 'next/router';
 import { NextPage } from 'next';
 import { useCreateTaskMutation } from 'src/store/tasks/apiSlice';
 import TasksForm from 'src/components/form/taskForm';
-import TaskHeader from 'src/components/tasks/taskHeader';
-import { Task } from '../lib/models/tasks';
+import { NewTask, Task } from '../lib/models/tasks';
 import Link from 'next/link';
 
 const New: NextPage = () => {
@@ -16,7 +15,7 @@ const New: NextPage = () => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         try {
-            await CreateTask({title: formData.get("title") as string, color: formData.get("color") as string, completed: false});
+            await CreateTask({title: formData.get("title") as string, color: formData.get("color") as string, completed: false} as NewTask);
         }
         catch(e: any) {
             setError(e?.message as string || "Unexpected Error Occurred");

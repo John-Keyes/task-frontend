@@ -5,10 +5,9 @@ import { useGetTasksQuery } from 'src/store/tasks/apiSlice';
 import Spinner from '../components/spinner';
 import Button from '../components/button';
 import FlatList from 'flatlist-react/lib';
-import TaskCard from '../components/tasks/taskCard';
+import TaskCard, { TaskCardProps } from '../components/tasks/taskCard';
 import TasksEmpty from '../components/tasks/tasksEmpty';
 import TaskHeader from '../components/tasks/taskHeader';
-import { emptyTasks } from 'src/lib/models/tasks';
 
 const Home: NextPage = () => {
     const {push} = useRouter();
@@ -33,7 +32,7 @@ const Home: NextPage = () => {
                 <ul className="fit-width">
                     <FlatList
                         list={data?.tasks || []}
-                        renderItem={TaskCard}
+                        renderItem={(item) => <TaskCard task={item}/>}
                         renderWhenEmpty={() => <TasksEmpty/>}
                     />
                 </ul>

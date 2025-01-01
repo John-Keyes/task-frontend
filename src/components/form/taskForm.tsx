@@ -19,9 +19,6 @@ const TasksForm = ({children, taskTitle = "", taskColor, SubmitHandler, error} :
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [color, setColor] = useState<string>(taskColor || "red");
     const [title, setTitle] = useState<string>(taskTitle || "");
-    const HandleEllipseClick = (e: BaseSyntheticEvent) => {
-        setColor(color)
-    }
     return (
             <form onSubmit={SubmitHandler} className="fit-width space-above">
                 <TextInput
@@ -37,15 +34,15 @@ const TasksForm = ({children, taskTitle = "", taskColor, SubmitHandler, error} :
                     <Label htmlForName="Color"/>
                 </div>
                 <div className="flex space-above">
-                    <Ellipse id="ellipse-red" group="form-color" color="red" formColor={color} onClick={HandleEllipseClick}/>
-                    <Ellipse id="ellipse-orange" group="form-color"  color="orange" formColor={color} onClick={HandleEllipseClick}/>
-                    <Ellipse id="ellipse-yellow" group="form-color" color="yellow" formColor={color} onClick={HandleEllipseClick}/>
-                    <Ellipse id="ellipse-green" group="form-color" color="green" formColor={color} onClick={HandleEllipseClick}/>
-                    <Ellipse id="ellipse-blue" group="form-color" color="blue" formColor={color} onClick={HandleEllipseClick}/>
-                    <Ellipse id="ellipse-indigo" group="form-color" color="indigo" formColor={color} onClick={HandleEllipseClick}/>
-                    <Ellipse id="ellipse-purple" group="form-color"  color="purple" formColor={color} onClick={HandleEllipseClick}/>
-                    <Ellipse id="ellipse-pink" group="form-color" color="pink" formColor={color} onClick={HandleEllipseClick}/>
-                    <Ellipse id="ellipse-brown" group="form-color" color="brown" formColor={color} onClick={HandleEllipseClick}/>
+                    <Ellipse id="ellipse-red" group="form-color" color="red" formColor={color} setFormColor={setColor}/>
+                    <Ellipse id="ellipse-orange" group="form-color"  color="orange" formColor={color} setFormColor={setColor}/>
+                    <Ellipse id="ellipse-yellow" group="form-color" color="yellow" formColor={color} setFormColor={setColor}/>
+                    <Ellipse id="ellipse-green" group="form-color" color="green" formColor={color} setFormColor={setColor}/>
+                    <Ellipse id="ellipse-blue" group="form-color" color="blue" formColor={color} setFormColor={setColor}/>
+                    <Ellipse id="ellipse-indigo" group="form-color" color="indigo" formColor={color} setFormColor={setColor}/>
+                    <Ellipse id="ellipse-purple" group="form-color"  color="purple" formColor={color} setFormColor={setColor}/>
+                    <Ellipse id="ellipse-pink" group="form-color" color="pink" formColor={color} setFormColor={setColor}/>
+                    <Ellipse id="ellipse-brown" group="form-color" color="brown" formColor={color} setFormColor={setColor}/>
                     <input value={color} style={{display: "none"}} />
                 </div>
                 <div className="flex sign-button-container fit-width space-above">

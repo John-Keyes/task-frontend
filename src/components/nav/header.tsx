@@ -20,7 +20,7 @@ const Header = () => {
     }, [topNavRoot]);
 
     return (
-            <div ref={topNavRoot} id="top-nav-root" className={`flex fit-width flex-center bg-darker-bg`}>
+            <div ref={topNavRoot} id="top-nav-root" className={`flex fit-width flex-center bg-dark-gray`}>
                 <nav id="top-nav" className="flex fit-width content-container">
                     <Link id="header-logo-container" href="/">
                         <Image priority alt="Logo" src={Logo} className="logo"/>
