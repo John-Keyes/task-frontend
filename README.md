@@ -12,10 +12,10 @@ DB_PORT=
 DB_NAME=""
 DB_URL = ""
 
-API_PORT=
-CLIENT_PORT=
-CLIENT_URL="http://localhost:"
-API_URL="http://localhost:"
+API_PORT=4040
+CLIENT_PORT=3040
+CLIENT_URL="http://localhost"
+API_URL="http://localhost"
 ```
 
 - Install the packages

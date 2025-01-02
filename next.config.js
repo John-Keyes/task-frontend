@@ -1,15 +1,12 @@
 /** @type {import('next').NextConfig} */
 
-let clientUrl = process.env.CLIENT_URL;
-let apiUrl = process.env.API_URL;
-
 module.exports = {
 	reactStrictMode: true,
 	output: "standalone",
 	publicRuntimeConfig: {
 		mode: process.env.MODE,
-    clientUrl,
-    apiUrl
+    clientUrl: `${process.env.CLIENT_URL}:${process.env.CLIENT_PORT}`,
+    apiUrl: `${process.env.CLIENT_URL}:${process.env.API_PORT}`
 	},
 	images: {
     remotePatterns: [

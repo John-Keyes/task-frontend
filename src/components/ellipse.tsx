@@ -31,7 +31,7 @@ const Ellipse = ({className, color, setFormColor, formColor, group, ...props}: E
     return (
         <>
             <div ref={ellipseDiv} {...props} className={`ellipse bg-${color}`} onClick={(e: BaseSyntheticEvent) => setFormColor(color)}/>
-            <input ref={radioInput} type="radio" id={`${props.id}-radio`} style={{display: "none"}} name={group} checked={color === formColor}/>
+            <input ref={radioInput} type="radio" id={`${props.id}-radio`} style={{display: "none"}} name={group} readOnly checked={color === formColor}/>
         </>
     );
 }

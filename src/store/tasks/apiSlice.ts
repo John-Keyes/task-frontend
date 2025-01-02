@@ -9,7 +9,14 @@ const {publicRuntimeConfig: {apiUrl}} = getConfig();
 //<return type arg>
 export const tasksApiSlice = createApi({
     reducerPath: "/tasks",
-    baseQuery: fetchBaseQuery({baseUrl: apiUrl}),
+    baseQuery: fetchBaseQuery({
+        baseUrl: apiUrl,
+        mode: "cors",
+        prepareHeaders: (headers) => {
+            headers.set("Content-Type", "application/json");
+            return headers;
+        }
+    }),
     tagTypes: ["tasks"],
     endpoints: (builder) => ({
         GetTasks: builder.query<TaskList, void>({
@@ -21,10 +28,10 @@ export const tasksApiSlice = createApi({
             providesTags: ["tasks"]
         }),
         CreateTask: builder.mutation<Task, NewTask>({
-            query: (task: NewTask) => ({
+            query: (newTask: NewTask) => ({
                 url: "/",
                 method: "POST",
-                body: task
+                body: newTask
             }),
             invalidatesTags: ["tasks"]
         }),
