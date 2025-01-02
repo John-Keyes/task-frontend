@@ -5,7 +5,7 @@ import { useGetOneTaskQuery, useUpdateTaskMutation } from 'src/store/tasks/apiSl
 import TasksForm from '../../components/form/taskForm';
 import Link from 'next/link';
 import { Task } from '../../lib/models/tasks';
-import { APIClient } from '../../lib/helpers/Api';
+import { APIClient } from '../../lib/helpers/api';
 
 const TasksDetail = () => {
     const { query: { id }, back, reload } = useRouter()
