@@ -43,7 +43,7 @@ const TasksForm = ({children, taskTitle = "", taskColor, SubmitHandler, error} :
                     <Ellipse id="ellipse-purple" group="form-color"  color="purple" formColor={color} setFormColor={setColor}/>
                     <Ellipse id="ellipse-pink" group="form-color" color="pink" formColor={color} setFormColor={setColor}/>
                     <Ellipse id="ellipse-brown" group="form-color" color="brown" formColor={color} setFormColor={setColor}/>
-                    <input value={color} style={{display: "none"}} />
+                    <input value={color} name="Color" style={{display: "none"}} readOnly/>
                 </div>
                 <div className="flex sign-button-container fit-width space-above">
                     <Button id="task-form-submit" className="fit-width" type="submit" disabled={isLoading/* || (!IsClear())*/}>
