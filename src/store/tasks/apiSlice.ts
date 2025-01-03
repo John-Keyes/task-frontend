@@ -2,13 +2,12 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import getConfig from 'next/config';
 import {NewTask, Task, TaskList} from 'src/lib/models/tasks';
 
-const {publicRuntimeConfig: {apiUrl}} = getConfig();
+const {publicRuntimeConfig: {apiUrl, clientUrl}} = getConfig();
 
 //type BuilderType = EndpointBuilder<BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, "tasks", "api">;
 
 //<return type arg>
 export const tasksApiSlice = createApi({
-    reducerPath: "/tasks",
     baseQuery: fetchBaseQuery({
         baseUrl: apiUrl,
         mode: "cors",
@@ -17,6 +16,7 @@ export const tasksApiSlice = createApi({
             return headers;
         }
     }),
+    reducerPath: "/tasks",
     tagTypes: ["tasks"],
     endpoints: (builder) => ({
         GetTasks: builder.query<TaskList, void>({

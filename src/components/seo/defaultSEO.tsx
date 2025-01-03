@@ -24,9 +24,32 @@ const DefaultSEO = () => {
 					siteName: "Nooro"
 				}}
 				twitter={{
-					cardType: "summary_large_image",
+					cardType: "summary_large_image"
 				}}
 				additionalLinkTags={[
+					{
+						rel: "shortcut icon",
+						href: `${clientUrl}/images/meta/favicon.ico`,
+						type: "image/x-icon"
+					},
+					{
+						rel: "icon",
+						type: "image/png",
+						sizes: "16x16",
+						href: `${clientUrl}/images/meta/favicon-16x16.png`,
+					},
+					{
+						rel: "icon",
+						type: "image/png",
+						sizes: "32x32",
+						href: `${clientUrl}/images/meta/favicon-32x32.png`,
+					},
+					{
+						rel: "apple-touch-icon",
+						type: "image/png",
+						sizes: "180x180",
+						href: `${clientUrl}/images/meta/apple-touch-icon.png`,
+					},
 					{
 						rel: "manifest",
 						href: `${clientUrl}/site.webmanifest`,
@@ -39,20 +62,16 @@ const DefaultSEO = () => {
 					},
 					{
 						name: "viewport",
-						content: "width=device-width, initial-scale=1.0",
+						content: "width=device-width, initial-scale=1.0"
 					},
 					{
 						name: "keywords",
-						content: "template, sample, web"
+						content: "nooro, test"
 					},
 					{
 						name: "author",
-						content: "John Keyes",
-					},
-					{
-						name: "https",
-						content: "1",
-					},
+						content: "John Keyes"
+					}
 				]}
 			/>
 

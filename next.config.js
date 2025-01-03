@@ -6,7 +6,7 @@ module.exports = {
 	publicRuntimeConfig: {
 		mode: process.env.MODE,
     clientUrl: `${process.env.CLIENT_URL}:${process.env.CLIENT_PORT}`,
-    apiUrl: `${process.env.CLIENT_URL}:${process.env.API_PORT}`
+    apiUrl: `${process.env.API_URL}:${process.env.API_PORT}`
 	},
 	images: {
     remotePatterns: [
@@ -24,7 +24,7 @@ module.exports = {
     return [
       {
         source: `/api/:path*`,
-        destination: `${apiUrl}/:path*`,
+        destination: `${process.env.API_URL}:${process.env.API_PORT}/:path*`,
       }
     ]
   }

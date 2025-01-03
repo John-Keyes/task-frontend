@@ -14,7 +14,6 @@ const New: NextPage = () => {
     const HandleSubmit = async (e: BaseSyntheticEvent) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        console.log({title: formData.get("Title") as string, color: formData.get("Color") as string, completed: false} as NewTask);
         try {
             await CreateTask({title: formData.get("title") as string, color: formData.get("color") as string, completed: false} as NewTask);
         }

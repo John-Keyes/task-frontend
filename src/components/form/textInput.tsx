@@ -8,7 +8,7 @@ export interface TextInputProps extends ComponentProps<"input">{
 
 const TextInput = (props: TextInputProps) => (
     <div className={`flex flex-center flex-column form-input-container ${props.className || ""}`}>   
-        <Label htmlFor={props.id} className="text-button" htmlForName={props.name}/>
+        <Label htmlFor={props.id} className="text-button" htmlforname={props.name}/>
         <input type="text" className="space-above" {...props}/>
     </div>
 )

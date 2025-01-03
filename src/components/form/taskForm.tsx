@@ -31,7 +31,7 @@ const TasksForm = ({children, taskTitle = "", taskColor, SubmitHandler, error} :
                     maxLength={50}
                 />
                 <div className="fit-width space-above">
-                    <Label htmlForName="Color"/>
+                    <Label htmlforname="Color"/>
                 </div>
                 <div className="flex space-above">
                     <Ellipse id="ellipse-red" group="form-color" color="red" formColor={color} setFormColor={setColor}/>
