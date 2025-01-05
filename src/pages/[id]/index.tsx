@@ -22,7 +22,7 @@ const TasksDetail = () => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         try {
-            await UpdateTask({id: data?.id as number, title: formData.get("title") as string, color: formData.get("color") as string, completed: data?.completed as boolean} as Task);
+            await UpdateTask({id: data?.id as number, title: formData.get("Title") as string, color: formData.get("Color") as string, completed: data?.completed as boolean} as Task);
         }
         catch(e: any) {
             setError(e?.message as string || "Unexpected Error Occurred");
@@ -36,7 +36,7 @@ const TasksDetail = () => {
                 <span className="fa-solid fa-chevron-left"/>
             </Link>
             <TasksForm SubmitHandler={HandleSubmit} taskColor={data?.color} taskTitle={data?.title} error={error}>
-                <span className="button-text flex flex-center text-white">
+                <span className="flex flex-center text-white">
                     <p>Save</p>
                     <span className="fa-solid space-infront fa-check fa-sharp"/>
                 </span>

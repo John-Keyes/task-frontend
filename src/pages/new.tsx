@@ -7,7 +7,7 @@ import { NewTask, Task } from '../lib/models/tasks';
 import Link from 'next/link';
 
 const New: NextPage = () => {
-    const {back, push} = useRouter();
+    const {push} = useRouter();
     const [CreateTask] = useCreateTaskMutation();
     const [error, setError] = useState<string | null>(null);
 
@@ -15,7 +15,7 @@ const New: NextPage = () => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         try {
-            await CreateTask({title: formData.get("title") as string, color: formData.get("color") as string, completed: false} as NewTask);
+            await CreateTask({title: formData.get("Title") as string, color: formData.get("Color") as string, completed: false} as NewTask);
         }
         catch(e: any) {
             setError(e?.message as string || "Unexpected Error Occurred");
@@ -30,7 +30,7 @@ const New: NextPage = () => {
                 <span className="fa-solid fa-chevron-left"/>
             </Link>
             <TasksForm SubmitHandler={HandleSubmit} error={error}>
-                <span className="button-text flex flex-center text-white">
+                <span className="flex flex-center text-white">
                     <p>Add Task</p>
                     <span className="fa-solid space-infront fa-plus"/>
                 </span>

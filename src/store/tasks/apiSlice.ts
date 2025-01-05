@@ -3,49 +3,45 @@ import getConfig from 'next/config';
 import {NewTask, Task, TaskList} from 'src/lib/models/tasks';
 
 const {publicRuntimeConfig: {apiUrl, clientUrl}} = getConfig();
-
-//type BuilderType = EndpointBuilder<BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError, {}, FetchBaseQueryMeta>, "tasks", "api">;
-
-//<return type arg>
+//reducerPath: "/tasks",
 export const tasksApiSlice = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: apiUrl,
         mode: "cors",
         prepareHeaders: (headers) => {
             headers.set("Content-Type", "application/json");
+            headers.set("Access-Control-Allow-Origin", clientUrl);
             return headers;
         }
     }),
-    reducerPath: "/tasks",
     tagTypes: ["tasks"],
     endpoints: (builder) => ({
         GetTasks: builder.query<TaskList, void>({
-            query: () => "/",
+            query: () => "/tasks",
             providesTags: ["tasks"]
         }),
         GetOneTask :builder.query<Task, number>({
-            query: (id: number) => `/${id}`,
-            providesTags: ["tasks"]
+            query: (id: number) => `/tasks/${id}`
         }),
         CreateTask: builder.mutation<Task, NewTask>({
             query: (newTask: NewTask) => ({
-                url: "/",
+                url: "/tasks",
                 method: "POST",
-                body: newTask
+                body: JSON.stringify(newTask)
             }),
             invalidatesTags: ["tasks"]
         }),
         UpdateTask: builder.mutation<Task, Task>({
             query: (task: Task) => ({
-                url: `/${task.id}`,
+                url: `/tasks/${task.id}`,
                 method: "PUT",
-                body: task
+                body: JSON.stringify(task)
             }),
             invalidatesTags: ["tasks"]
         }),
         DeleteTask: builder.mutation<void, number>({
             query: (id: number) => ({
-                url: `/${id}`,
+                url: `/tasks/${id}`,
                 method: "DELETE"
             })
         })

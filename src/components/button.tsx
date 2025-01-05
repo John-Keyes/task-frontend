@@ -6,7 +6,7 @@ interface ButtonProps extends ComponentProps<"button"> {
 }
 
 const Button = ({children, className, ...props}: ButtonProps) => (
-    <button type="button" className={`button text-white task-text button-card-radius bg-button ${className} ${props.disabled && "button-disabled button-disabled-effects"}`} {...props}>{children}</button>
+    <button className={`button text-white task-text button-card-radius bg-button ${className} ${props.disabled && "button-disabled button-disabled-effects"}`} {...props}>{children}</button>
 );
 
 export default Button;

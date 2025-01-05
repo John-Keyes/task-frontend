@@ -27,7 +27,7 @@ const TasksForm = ({children, taskTitle = "", taskColor, SubmitHandler, error} :
                     placeholder="Ex: Brush Your Teeth"
                     value={title}
                     onChange={(e: BaseSyntheticEvent) => setTitle(e.currentTarget.value)}
-                    minLength={4}
+                    minLength={3}
                     maxLength={50}
                 />
                 <div className="fit-width space-above">
