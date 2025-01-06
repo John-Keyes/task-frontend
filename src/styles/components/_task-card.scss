@@ -10,5 +10,40 @@
     padding-left: 0.5rem;
     padding-bottom: 0.75rem;
     padding-right: 0.5rem;
-    justify-content: space-around
+    position: relative;
+    &-checkbox {
+        border-radius: 50%;
+        width: 17.45px;
+        height: 17.45px;
+        border: 2px solid theme-color("checkbox");
+        position: relative;
+        &-checked {
+            @each $key, $value in $colors {
+              &-#{$key} {
+                background-color: $value;
+              }
+            }
+        }
+        &-icon {
+            z-index: 1;
+            position: absolute;
+            top: 8.25px;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+    }
+    &-label {
+        font-size: 14px;
+        font-weight: 400px;
+        width: 90%;
+        line-height: 19.6px;
+        &-checked {
+            text-decoration: line-through;
+            text-underline-position: from-font;
+            color: theme-color("icon");
+        }
+    }
 }

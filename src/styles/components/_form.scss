@@ -39,14 +39,6 @@
         color: theme-color("white") !important;
       }
     }
-    &[type="checkbox"] {
-      border-radius: 50%;
-      width: 17.45px;
-      border: 2px solid theme-color("checkbox")
-    }
-    &:checked {
-      background-color: theme-color("indigo");
-    }
 
     &[type = "file"] {
       display: none;

@@ -1,12 +1,17 @@
 import getConfig from 'next/config'
 
-const { publicRuntimeConfig: apiUrl } = getConfig()
+const {publicRuntimeConfig: {apiUrl, clientUrl}} = getConfig();
 
 export class APIClient {
 
 	async Get(route: string, headers: HeadersInit) {
-		const response = await fetch(`${apiUrl + route}`, {
-			headers,
+		const response = await fetch(`${apiUrl}${route}`, {
+			method: "GET",
+			headers: {
+				...headers,
+				"Content-Type": "application/json",
+				"Access-Control-Allow-Origin": clientUrl
+			}
 		})
 
 		return await response.json();
@@ -18,7 +23,8 @@ export class APIClient {
 			body: JSON.stringify(body),
 			headers: {
 				...headers,
-				"Content-type": "application/json"
+				"Content-Type": "application/json",
+            	"Access-Control-Allow-Origin": clientUrl
 			},
 		})
 

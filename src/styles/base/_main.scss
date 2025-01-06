@@ -2,9 +2,7 @@ body {
     margin: 0;
     background-color: theme-color("bg");
     color: #fff;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+    font-family: Inter;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     max-width: 100vw;
@@ -14,13 +12,13 @@ body {
   }
   
   .content-container {
-    width: Fixed(736px);
+    width: 736px;
     margin: 0;
     overflow-x: hidden;
     justify-self:center;
     @media screen and (max-width: device-max("md")) {
-      padding-left: 0.75rem;
-      padding-right: 0.75rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
       width: 100%;
     }
     z-index: 0;
@@ -36,12 +34,10 @@ body {
   .custom-scrollbars__content::-webkit-scrollbar {
     display: none;
   }
-
-  code {
-    font-family: Inter;
-  }
-
   
+  .cursor-pointer {
+    cursor: pointer;
+  }
   a, .a {
     text-decoration: none;  
     color: #fff;

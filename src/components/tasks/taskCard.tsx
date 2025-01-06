@@ -1,7 +1,10 @@
 import { useRouter } from 'next/router';
-import {BaseSyntheticEvent, ComponentProps, useState} from 'react';
+import {BaseSyntheticEvent, ComponentProps, useEffect, useRef, useState} from 'react';
 import {Task} from 'src/lib/models/tasks';
 import { useDeleteTaskMutation, useUpdateTaskMutation } from 'src/store/tasks/apiSlice';
+import Label from '../form/label';
+import { TimeoutId } from '@reduxjs/toolkit/dist/query/core/buildMiddleware/types';
+import Link from 'next/link';
 
 export interface TaskCardProps extends ComponentProps<"li"> {
     task: Task;
@@ -11,31 +14,44 @@ const TaskCard = ({task, ...props}: TaskCardProps) => {
     const [UpdateTask] = useUpdateTaskMutation();
     const [DeleteTask] = useDeleteTaskMutation();
     const {reload, push} = useRouter();
-    const [focused, setFocused] = useState<boolean>(false);
-    const HandleOnFocus = (e: BaseSyntheticEvent) => {
-        setFocused(true);
+    const [hovering, setHovering] = useState<boolean>(false);
+    const taskCardInputRef = useRef<HTMLInputElement>(null);
+    //const [checked, setChecked] = useState<boolean>(task.completed);
+    const [changed, setChanged] = useState<boolean>(false);
+    const [delay, setDelay] = useState<number | string | NodeJS.Timeout>(0);
+    const HandleOnMouseEnter = (e: BaseSyntheticEvent) => {
+        setHovering(true);
+        setDelay(setTimeout(() => {
+            HandleUpdateTask()
+        }, 1000));
     }
-    const HandleOnBlur = (e: BaseSyntheticEvent) => {
-        const timeout = setTimeout(() => {
-            console.log("T");
-        }, 3000);
-        setFocused(false);
-        return () => clearTimeout(timeout)
+    const HandleOnMouseLeave = async (e: BaseSyntheticEvent) => {
+        clearTimeout(delay);
+        setHovering(false);
     }
-    const HandleOnChange = async (e: BaseSyntheticEvent) => {
-        if(!focused) {
-            console.log(e.currentTarget.checked);
-            const checked = e.currentTarget.checked;
+    
+    const HandleUpdateTask = async () => {
+        if(!hovering) {
             try {
-                await UpdateTask({...task, completed: checked});
+                await UpdateTask({...task, completed: taskCardInputRef?.current?.checked || task.completed});
             } catch(e) {
                 console.log(e);
             }
         }
     }
 
+    const HandleOnChange = async () => {
+        //changed ? HandleUpdateTask() : setChanged(true);
+        if(!changed) {
+            setChanged(true);
+        }
+        else {
+            HandleUpdateTask();
+        }
+    }
+
     const HandleDelete = async (e: BaseSyntheticEvent) => {
-        if(!focused) {
+        //if(!hovering) {
             try {
                 await DeleteTask(task.id);
             } catch(e) {
@@ -44,13 +60,24 @@ const TaskCard = ({task, ...props}: TaskCardProps) => {
             finally {
                 reload();
             }
-        }
+        //}
     }
+
+    const HandleClick = () => {
+        taskCardInputRef?.current?.click();
+    }
+
     return (
-        <li {...props} className="fit-width task-card space-above" onClick={() => push(`/${task.id}`)}>
-            <input id={`task-card-${task.id}`} onFocus={HandleOnFocus} onChange={HandleOnChange} type="checkbox" onBlur={HandleOnBlur} checked={task.completed} name={task.title as string} className=""/>
-            <label htmlFor={`task-card-${task.id}`} className="ms-2 text-sm font-medium text-white">{task.title}</label>
-            <span className="fa-regular fa-trash-can text-icon" onClick={HandleDelete} />
+        <li {...props} onMouseLeave={HandleOnMouseLeave} className="task-card space-above flex flex-center">
+            <div onMouseEnter={HandleOnMouseEnter} onClick={HandleClick} className={`cursor-pointer task-card-checkbox ${taskCardInputRef?.current?.checked ? `task-card-checkbox-checked-${task.color}` :""}`}>
+                {taskCardInputRef?.current?.checked && <span className="fa-solid fa-check fa-sharp fa-sm text-white task-card-checkbox-icon"/>}
+            </div>
+            <input ref={taskCardInputRef} id={`task-card-${task.id}`} onChange={HandleOnChange} style={{display: "none"}} type="checkbox" defaultChecked={task.completed} name={task.title as string}/>
+            {/*<Label htmlFor={`task-card-${task.id}`} onClick={() => push(`/${task.id}`)} className={`text-white task-card-label ${taskCardInputRef?.current?.checked ? "task-card-label-checked" :""}`} htmlforname={task.title}/>*/}
+            <Link href={`/${task.id}`} className={`text-white task-card-label ${taskCardInputRef?.current?.checked ? "task-card-label-checked" :""}`}>
+                {task.title}
+            </Link>
+            <span className="fa-regular fa-trash-can text-icon cursor-pointer" onClick={HandleDelete} />
         </li>
     );
 }

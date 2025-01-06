@@ -21,9 +21,6 @@ const Home: NextPage = () => {
     if(isLoading) {
         return <Spinner/>;
     }
-    /*else if(isError) {
-        return <p>{"An Unexpected Error Occurred."}</p>
-    }*/
     return (
         <div id="home">
             <div className="flex page-padding flex-center flex-column content-container">
