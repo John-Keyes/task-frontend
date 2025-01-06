@@ -6,7 +6,6 @@ export class APIClient {
 
 	async Get(route: string, headers: HeadersInit) {
 		const response = await fetch(`${apiUrl + route}`, {
-			credentials: "include",
 			headers,
 		})
 
@@ -17,7 +16,6 @@ export class APIClient {
 		const response = await fetch(`${apiUrl + route}`, {
 			method: "POST",
 			body: JSON.stringify(body),
-			credentials: "include",
 			headers: {
 				...headers,
 				"Content-type": "application/json"

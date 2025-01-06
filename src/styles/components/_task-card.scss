@@ -1,5 +1,4 @@
 .task-card {
-    width: 100%;
     color: theme-color("white");
     background-color: theme-color("card");
     border: 1px solid theme-color("gray");
@@ -11,4 +10,5 @@
     padding-left: 0.5rem;
     padding-bottom: 0.75rem;
     padding-right: 0.5rem;
+    justify-content: space-around
 }

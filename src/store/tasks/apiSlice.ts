@@ -3,7 +3,7 @@ import getConfig from 'next/config';
 import {NewTask, Task, TaskList} from 'src/lib/models/tasks';
 
 const {publicRuntimeConfig: {apiUrl, clientUrl}} = getConfig();
-//reducerPath: "/tasks",
+
 export const tasksApiSlice = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: apiUrl,

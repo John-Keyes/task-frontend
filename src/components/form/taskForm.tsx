@@ -12,11 +12,11 @@ type TasksFormType = {
     children: ReactNode, 
     taskTitle?: string,
     taskColor?: string, 
+    isLoading: boolean,
     SubmitHandler: any,
     error: string | null
 }
-const TasksForm = ({children, taskTitle = "", taskColor, SubmitHandler, error} : TasksFormType) => {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+const TasksForm = ({children, taskTitle = "", taskColor, isLoading, SubmitHandler, error} : TasksFormType) => {
     const [color, setColor] = useState<string>(taskColor || "red");
     const [title, setTitle] = useState<string>(taskTitle || "");
     return (
@@ -46,7 +46,7 @@ const TasksForm = ({children, taskTitle = "", taskColor, SubmitHandler, error} :
                     <input value={color} name="Color" style={{display: "none"}} readOnly/>
                 </div>
                 <div className="flex sign-button-container fit-width space-above">
-                    <Button id="task-form-submit" className="fit-width" type="submit" disabled={isLoading/* || (!IsClear())*/}>
+                    <Button id="task-form-submit" className="fit-width" type="submit" disabled={isLoading}>
                         {children}
                     </Button>
                 </div>

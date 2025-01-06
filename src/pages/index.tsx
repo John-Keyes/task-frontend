@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {useRouter} from 'next/router';
 import { NextPage } from 'next';
 import { useGetTasksQuery } from 'src/store/tasks/apiSlice';
@@ -8,17 +8,22 @@ import FlatList from 'flatlist-react/lib';
 import TaskCard, { TaskCardProps } from '../components/tasks/taskCard';
 import TasksEmpty from '../components/tasks/tasksEmpty';
 import TaskHeader from '../components/tasks/taskHeader';
+import { Task } from 'src/lib/models/tasks';
 
 const Home: NextPage = () => {
     const {push} = useRouter();
-    const {data, isLoading, isSuccess, isError, error} = useGetTasksQuery();
-    let content;
+    const {data, isLoading: loading, isSuccess, isError, error} = useGetTasksQuery();
+    const [isLoading, setIsLoading] = useState<boolean>(loading);
+        useEffect(() => {
+            setIsLoading(false);
+        }, []);
+        
     if(isLoading) {
-        content = <Spinner/>;
+        return <Spinner/>;
     }
-    else if(isError) {
-        content = <p>{"error"}</p>
-    }
+    /*else if(isError) {
+        return <p>{"An Unexpected Error Occurred."}</p>
+    }*/
     return (
         <div id="home">
             <div className="flex page-padding flex-center flex-column content-container">
@@ -32,7 +37,8 @@ const Home: NextPage = () => {
                 <ul className="fit-width">
                     <FlatList
                         list={data?.tasks || []}
-                        renderItem={(item) => <TaskCard task={item}/>}
+                        keyExtractor={(item: Task) => item.id.toString()}
+                        renderItem={(item: Task) => <TaskCard key={item.id} task={item}/>}
                         renderWhenEmpty={() => <TasksEmpty/>}
                     />
                 </ul>

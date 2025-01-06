@@ -8,14 +8,16 @@ import { Task } from '../../lib/models/tasks';
 import { APIClient } from '../../lib/helpers/api';
 
 const TasksDetail = () => {
-    const { query: { id }, back, reload } = useRouter()
+    const { query: { id }, back, push } = useRouter()
     const { data } = useGetOneTaskQuery(Number(id));
     const [UpdateTask, isError] = useUpdateTaskMutation();
     const [error, setError] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     useEffect(() => {
 		if (isError) {
 			back();
 		}
+        setIsLoading(false);
 	}, [isError, back]);
 
     const HandleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
@@ -27,7 +29,7 @@ const TasksDetail = () => {
         catch(e: any) {
             setError(e?.message as string || "Unexpected Error Occurred");
         } finally {
-            reload();
+            push("/");
         }
     }
     return (
@@ -35,7 +37,7 @@ const TasksDetail = () => {
             <Link href="/" className="arrow-link">
                 <span className="fa-solid fa-chevron-left"/>
             </Link>
-            <TasksForm SubmitHandler={HandleSubmit} taskColor={data?.color} taskTitle={data?.title} error={error}>
+            <TasksForm SubmitHandler={HandleSubmit} taskColor={data?.color} taskTitle={data?.title} isLoading={isLoading} error={error}>
                 <span className="flex flex-center text-white">
                     <p>Save</p>
                     <span className="fa-solid space-infront fa-check fa-sharp"/>
@@ -48,10 +50,12 @@ const TasksDetail = () => {
 
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-	const id = context.query.id;
+	console.log(context.params);
+    const id = context.query.id;
+    
 
 	const api = new APIClient();
-	const data = await api.Get(`/${id}`, {
+	const data = await api.Get(`/tasks/${id}`, {
 		Cookie: context.req.headers.cookie || '',
 	})
 

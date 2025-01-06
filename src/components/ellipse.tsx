@@ -17,8 +17,8 @@ const Ellipse = ({className, color, setFormColor, formColor, group, ...props}: E
         const ellipse: HTMLDivElement | null = ellipseDiv.current;
         if(radio && ellipse) {
             if(radio.checked) {
-                ellipse.style.borderColor = "#F2F2F2";
-                ellipse.style.borderWidth = "3px";
+                ellipse.style.borderColor = "#FFFFFF";
+                ellipse.style.borderWidth = "2px";
                 ellipse.style.borderStyle = "solid";
             }
             else {
@@ -30,7 +30,7 @@ const Ellipse = ({className, color, setFormColor, formColor, group, ...props}: E
     }, [formColor])
     return (
         <>
-            <div ref={ellipseDiv} {...props} className={`ellipse bg-${color}`} onClick={(e: BaseSyntheticEvent) => setFormColor(color)}/>
+            <div ref={ellipseDiv} {...props} className={`ellipse bg-${color}`} onClick={() => setFormColor(color)}/>
             <input ref={radioInput} type="radio" id={`${props.id}-radio`} style={{display: "none"}} name={group} readOnly checked={color === formColor}/>
         </>
     );
