@@ -4,11 +4,10 @@ const {publicRuntimeConfig: {apiUrl, clientUrl}} = getConfig();
 
 export class APIClient {
 
-	async Get(route: string, headers: HeadersInit) {
+	async Get(route: string) {
 		const response = await fetch(`${apiUrl}${route}`, {
 			method: "GET",
 			headers: {
-				...headers,
 				"Content-Type": "application/json",
 				"Access-Control-Allow-Origin": clientUrl
 			}
@@ -17,12 +16,11 @@ export class APIClient {
 		return await response.json();
 	}
 
-	async Post(route: string, body: Object, headers: HeadersInit) {
+	async Post(route: string, body: Object) {
 		const response = await fetch(`${apiUrl + route}`, {
 			method: "POST",
 			body: JSON.stringify(body),
 			headers: {
-				...headers,
 				"Content-Type": "application/json",
             	"Access-Control-Allow-Origin": clientUrl
 			},

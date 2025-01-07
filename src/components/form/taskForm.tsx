@@ -1,7 +1,6 @@
 import React, { BaseSyntheticEvent, ReactNode, useEffect, useState } from 'react';
 import {useRouter} from 'next/router';
 import { useCreateTaskMutation } from 'src/store/tasks/apiSlice';
-import Spinner from '../spinner';
 import TextInput from './textInput';
 import Button from '../button';
 import Ellipse from '../ellipse';

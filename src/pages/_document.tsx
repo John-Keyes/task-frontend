@@ -5,6 +5,7 @@ const Document = () => {
     <Html>
       <Head>
         <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+        <link rel="preload" href="../../../public/images/logo.svg" as="image"/>
       </Head>
       <body>
         <Main />

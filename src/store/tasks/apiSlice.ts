@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import getConfig from 'next/config';
-import {NewTask, Task, TaskList} from 'src/lib/models/tasks';
+import {NewTask, Task} from 'src/lib/models/tasks';
 
 const {publicRuntimeConfig: {apiUrl, clientUrl}} = getConfig();
 
@@ -16,12 +16,13 @@ export const tasksApiSlice = createApi({
     }),
     tagTypes: ["tasks"],
     endpoints: (builder) => ({
-        GetTasks: builder.query<TaskList, void>({
+        GetTasks: builder.query<Task[], void>({
             query: () => "/tasks",
             providesTags: ["tasks"]
         }),
         GetOneTask :builder.query<Task, number>({
-            query: (id: number) => `/tasks/${id}`
+            query: (id: number) => `/tasks/${id}`,
+            providesTags: ["tasks"]
         }),
         CreateTask: builder.mutation<Task, NewTask>({
             query: (newTask: NewTask) => ({
