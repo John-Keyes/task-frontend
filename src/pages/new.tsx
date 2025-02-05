@@ -5,7 +5,7 @@ import { useCreateTaskMutation } from 'src/store/tasks/apiSlice';
 import TasksForm from 'src/components/form/taskForm';
 import { NewTask } from '../lib/models/tasks';
 import Link from 'next/link';
-import { Spinner } from 'flowbite-react';
+import Spinner from 'src/components/Spinner';
 
 const New: NextPage = () => {
     const {push} = useRouter();

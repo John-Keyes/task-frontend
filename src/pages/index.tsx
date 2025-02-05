@@ -8,7 +8,7 @@ import TaskCard, { TaskCardProps } from '../components/tasks/taskCard';
 import TasksEmpty from '../components/tasks/tasksEmpty';
 import TaskHeader from '../components/tasks/taskHeader';
 import { Task } from 'src/lib/models/tasks';
-import { Spinner } from 'flowbite-react';
+import Spinner from 'src/components/Spinner';
 
 const Home: NextPage = () => {
     const {push, reload} = useRouter();

@@ -6,7 +6,7 @@ import TasksForm from '../../components/form/taskForm';
 import Link from 'next/link';
 import { Task } from '../../lib/models/tasks';
 import { APIClient } from '../../lib/helpers/api';
-import { Spinner } from 'flowbite-react';
+import Spinner from 'src/components/Spinner';
 
 const TasksDetail = () => {
     const { query: { id }, back, push } = useRouter()
@@ -19,6 +19,10 @@ const TasksDetail = () => {
     useEffect(() => {
         setIsLoading(false);
 	}, [isError, back]);
+
+    if(isLoading) {
+        return <Spinner/>
+    }
 
     const HandleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
