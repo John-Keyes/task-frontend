@@ -6,7 +6,7 @@ import TasksForm from '../../components/form/taskForm';
 import Link from 'next/link';
 import { Task } from '../../lib/models/tasks';
 import { APIClient } from '../../lib/helpers/api';
-import Spinner from 'src/components/Spinner';
+import Spinner from '../../components/spinner';
 
 const TasksDetail = () => {
     const { query: { id }, back, push } = useRouter()
